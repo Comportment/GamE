@@ -2,7 +2,7 @@ package me.diax.comportment.game.states;
 
 import me.diax.comportment.game.Game;
 import me.diax.comportment.game.entity.Player;
-import me.diax.comportment.game.tiles.TileManager;
+import me.diax.comportment.game.worlds.World;
 
 import java.awt.*;
 
@@ -13,20 +13,23 @@ import java.awt.*;
 public class GameState extends State {
 
     private Player player;
+    private World world;
 
     public GameState(Game game) {
         super(game);
         player = new Player(game, 100, 100);
+        world = new World("");
     }
 
     @Override
     public void tick() {
+        world.tick();
         player.tick();
     }
 
     @Override
     public void render(Graphics graphics) {
+        world.render(graphics);
         player.render(graphics);
-        TileManager.tiles[1].render(graphics, 0, 0);
     }
 }
