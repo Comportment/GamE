@@ -1,8 +1,8 @@
 package me.diax.comportment.game.utils;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Created by Comportment on 10/06/2017 at 16:47
@@ -13,14 +13,12 @@ public class Utils {
     public static String loadFileAsString(String path) {
         StringBuilder builder = new StringBuilder();
         try {
-            FileReader reader = new FileReader(path);
-            BufferedReader bufferedReader = new BufferedReader(reader);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Utils.class.getResourceAsStream(path), "UTF-8"));
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 builder.append(line).append("\n");
             }
             bufferedReader.close();
-            reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
