@@ -14,7 +14,7 @@ public class Player extends Creature {
     private Game game;
 
     public Player(Game game, float x, float y) {
-        super(x, y, Creature.WIDTH, Creature.HEIGHT);
+        super(game, x, y, Creature.WIDTH, Creature.HEIGHT);
         this.game = game;
     }
 
@@ -22,11 +22,12 @@ public class Player extends Creature {
     public void tick() {
         getInput();
         move();
+        game.getCamera().centerOnEntity(this);
     }
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.player, (int) x, (int) y, width, height, null);
+        graphics.drawImage(Assets.player, (int) (x - game.getCamera().getxOffset()), (int) (y - game.getCamera().getyOffset()), width, height, null);
     }
 
     public void getInput() {

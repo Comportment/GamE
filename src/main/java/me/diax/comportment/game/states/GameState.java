@@ -18,13 +18,14 @@ public class GameState extends State {
     public GameState(Game game) {
         super(game);
         player = new Player(game, 100, 100);
-        world = new World("");
+        world = new World(game, "C:\\Users\\FineComportment\\IdeaProjects\\GamE\\src\\main\\resources\\worlds\\1.world");
     }
 
     @Override
     public void tick() {
         world.tick();
         player.tick();
+        game.getCamera().move(1, 1);
     }
 
     @Override

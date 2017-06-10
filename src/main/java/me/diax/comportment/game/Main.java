@@ -1,5 +1,7 @@
 package me.diax.comportment.game;
 
+import me.diax.comportment.game.tiles.Tile;
+
 import java.awt.*;
 
 /**
@@ -9,7 +11,7 @@ import java.awt.*;
 public class Main {
 
     public static void main(String[] args) {
-        Game game = new Game("GamE", new Dimension(300, 300));
+        Game game = new Game("GamE", new Dimension(Tile.WIDTH * 5, Tile.HEIGHT * 5));
         game.start();
     }
 }

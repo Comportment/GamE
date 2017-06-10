@@ -1,5 +1,7 @@
 package me.diax.comportment.game.entity;
 
+import me.diax.comportment.game.Game;
+
 /**
  * Created by Comportment on 10/06/2017 at 15:35
  * If you don't understand this, we are screwed.
@@ -16,17 +18,12 @@ public abstract class Creature extends Entity {
     protected float speed;
     protected float xMove, yMove;
 
-    public Creature(float x, float y, int width, int height) {
-        super(x, y, width, height);
+    public Creature(Game game, float x, float y, int width, int height) {
+        super(game, x, y, width, height);
         speed = Creature.BASE_SPEED;
         health = Creature.BASE_HEALTH;
         yMove = 0;
         xMove = 0;
-    }
-
-    public void move() {
-        x += xMove;
-        y += yMove;
     }
 
     public static int getBaseHealth() {
@@ -35,6 +32,11 @@ public abstract class Creature extends Entity {
 
     public static float getBaseSpeed() {
         return BASE_SPEED;
+    }
+
+    public void move() {
+        x += xMove;
+        y += yMove;
     }
 
     public int getHealth() {

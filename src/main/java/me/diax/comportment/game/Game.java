@@ -2,6 +2,7 @@ package me.diax.comportment.game;
 
 import me.diax.comportment.game.display.Display;
 import me.diax.comportment.game.graphics.Assets;
+import me.diax.comportment.game.graphics.GameCamera;
 import me.diax.comportment.game.input.KeyManager;
 import me.diax.comportment.game.states.GameState;
 import me.diax.comportment.game.states.MenuState;
@@ -17,10 +18,9 @@ import java.awt.image.BufferStrategy;
  */
 public class Game implements Runnable {
 
+    public String title;
     private Display display;
     private Dimension dimension;
-    public String title;
-
     private Boolean running = false;
     private Thread thread;
 
@@ -34,6 +34,8 @@ public class Game implements Runnable {
 
     private KeyManager keyManager;
 
+    private GameCamera camera;
+
 
     public Game(String title, Dimension dimension) {
         this.title = title;
@@ -45,6 +47,7 @@ public class Game implements Runnable {
         Assets.init();
         this.display = new Display(title, dimension);
         display.getFrame().addKeyListener(keyManager);
+        camera = new GameCamera(this, 0, 0);
         gameState = new GameState(this);
         menuState = new MenuState(this);
         StateManager.setState(gameState);
@@ -71,6 +74,10 @@ public class Game implements Runnable {
         }
         bufferStrategy.show();
         graphics.dispose();
+    }
+
+    public GameCamera getCamera() {
+        return camera;
     }
 
     @Override
@@ -125,5 +132,9 @@ public class Game implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public Dimension getDimension() {
+        return dimension;
     }
 }
