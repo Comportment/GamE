@@ -1,7 +1,6 @@
 package me.diax.comportment.game.graphics;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
