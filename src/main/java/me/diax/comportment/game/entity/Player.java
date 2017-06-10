@@ -1,5 +1,6 @@
 package me.diax.comportment.game.entity;
 
+import me.diax.comportment.game.Game;
 import me.diax.comportment.game.graphics.Assets;
 
 import java.awt.*;
@@ -10,13 +11,19 @@ import java.awt.*;
  */
 public class Player extends Creature {
 
-    public Player(float x, float y) {
+    private Game game;
+
+    public Player(Game game, float x, float y) {
         super(x, y);
+        this.game = game;
     }
 
     @Override
     public void tick() {
-
+        if (game.getKeyManager().up) y -= 5;
+        if (game.getKeyManager().down) y += 5;
+        if (game.getKeyManager().left) x -= 5;
+        if (game.getKeyManager().right) x += 5;
     }
 
     @Override

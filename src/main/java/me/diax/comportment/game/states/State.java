@@ -1,5 +1,7 @@
 package me.diax.comportment.game.states;
 
+import me.diax.comportment.game.Game;
+
 import java.awt.*;
 
 /**
@@ -7,6 +9,12 @@ import java.awt.*;
  * If you don't understand this, we are screwed.
  */
 public abstract class State {
+
+    protected Game game;
+
+    public State(Game game) {
+        this.game = game;
+    }
 
     public abstract void tick();
 

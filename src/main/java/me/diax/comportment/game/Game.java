@@ -2,6 +2,7 @@ package me.diax.comportment.game;
 
 import me.diax.comportment.game.display.Display;
 import me.diax.comportment.game.graphics.Assets;
+import me.diax.comportment.game.input.KeyManager;
 import me.diax.comportment.game.states.GameState;
 import me.diax.comportment.game.states.MenuState;
 import me.diax.comportment.game.states.State;
@@ -31,21 +32,26 @@ public class Game implements Runnable {
     private State gameState;
     private State menuState;
 
+    private KeyManager keyManager;
+
 
     public Game(String title, Dimension dimension) {
         this.title = title;
         this.dimension = dimension;
+        keyManager = new KeyManager();
     }
 
     private void init() {
         Assets.init();
         this.display = new Display(title, dimension);
-        gameState = new GameState();
-        menuState = new MenuState();
+        display.getFrame().addKeyListener(keyManager);
+        gameState = new GameState(this);
+        menuState = new MenuState(this);
         StateManager.setState(gameState);
     }
 
     private void tick() {
+        keyManager.tick();
         if (StateManager.getState() != null) {
             StateManager.getState().tick();
         }
@@ -98,6 +104,10 @@ public class Game implements Runnable {
             }
         }
         stop();
+    }
+
+    public KeyManager getKeyManager() {
+        return keyManager;
     }
 
     public synchronized void start() {
