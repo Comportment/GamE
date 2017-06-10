@@ -14,20 +14,28 @@ public class Player extends Creature {
     private Game game;
 
     public Player(Game game, float x, float y) {
-        super(x, y);
+        super(x, y, Creature.WIDTH, Creature.HEIGHT);
         this.game = game;
     }
 
     @Override
     public void tick() {
-        if (game.getKeyManager().up) y -= 5;
-        if (game.getKeyManager().down) y += 5;
-        if (game.getKeyManager().left) x -= 5;
-        if (game.getKeyManager().right) x += 5;
+        getInput();
+        move();
     }
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.player, (int) x, (int) y, null);
+        graphics.drawImage(Assets.player, (int) x, (int) y, width, height, null);
+    }
+
+    public void getInput() {
+        yMove = 0;
+        xMove = 0;
+
+        if (game.getKeyManager().up) yMove = -speed;
+        if (game.getKeyManager().down) yMove = speed;
+        if (game.getKeyManager().left) xMove = -speed;
+        if (game.getKeyManager().right) xMove = speed;
     }
 }

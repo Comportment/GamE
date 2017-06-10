@@ -2,6 +2,7 @@ package me.diax.comportment.game.states;
 
 import me.diax.comportment.game.Game;
 import me.diax.comportment.game.entity.Player;
+import me.diax.comportment.game.tiles.TileManager;
 
 import java.awt.*;
 
@@ -26,5 +27,6 @@ public class GameState extends State {
     @Override
     public void render(Graphics graphics) {
         player.render(graphics);
+        TileManager.tiles[1].render(graphics, 0, 0);
     }
 }
