@@ -16,7 +16,7 @@ import java.awt.image.BufferStrategy;
  * Created by Comportment on 10/06/2017 at 13:41
  * If you don't understand this, we are screwed.
  */
-public class Game implements Runnable {
+public class Game implements Tickable, Runnable, Renderable {
 
     public String title;
     private Display display;
@@ -55,14 +55,16 @@ public class Game implements Runnable {
         StateManager.setState(gameState);
     }
 
-    private void tick() {
+    @Override
+    public void tick() {
         keyManager.tick();
         if (StateManager.getState() != null) {
             StateManager.getState().tick();
         }
     }
 
-    private void render() {
+    @Override
+    public void render(Graphics graphics) {
         bufferStrategy = display.getCanvas().getBufferStrategy();
         if (bufferStrategy == null) {
             display.getCanvas().createBufferStrategy(3);
@@ -101,7 +103,7 @@ public class Game implements Runnable {
             lastTime = now;
             if (delta >= 1) {
                 tick();
-                render();
+                render(graphics);
                 ticks++;
                 delta--;
             }

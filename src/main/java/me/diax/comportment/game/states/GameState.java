@@ -26,7 +26,6 @@ public class GameState extends State {
     public void tick() {
         world.tick();
         player.tick();
-        //handler.getGame().getCamera().move(1, 1);
     }
 
     @Override

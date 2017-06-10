@@ -1,6 +1,8 @@
 package me.diax.comportment.game.worlds;
 
 import me.diax.comportment.game.Handler;
+import me.diax.comportment.game.Renderable;
+import me.diax.comportment.game.Tickable;
 import me.diax.comportment.game.tiles.Tile;
 import me.diax.comportment.game.tiles.Tiles;
 import me.diax.comportment.game.utils.Utils;
@@ -11,7 +13,7 @@ import java.awt.*;
  * Created by Comportment on 10/06/2017 at 16:28
  * If you don't understand this, we are screwed.
  */
-public class World {
+public class World implements Tickable, Renderable {
 
     private int width, height, spawnX, spawnY;
     private int[][] tiles;
@@ -22,10 +24,11 @@ public class World {
         this.loadWorld(path);
     }
 
+    @Override
     public void tick() {
-
     }
 
+    @Override
     public void render(Graphics graphics) {
         int xStart = (int) Math.max(0, handler.getCamera().getxOffset() / Tile.WIDTH);
         int xEnd = (int) Math.min(width, (handler.getCamera().getxOffset() + handler.getGame().getDimension().getWidth()) / Tile.WIDTH + 1);

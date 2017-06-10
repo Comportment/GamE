@@ -1,12 +1,14 @@
 package me.diax.comportment.game.graphics;
 
+import me.diax.comportment.game.Tickable;
+
 import java.awt.image.BufferedImage;
 
 /**
  * Created by Comportment on 10/06/2017 at 21:22
  * If you don't understand this, we are screwed.
  */
-public class Animation {
+public class Animation implements Tickable {
 
     private int speed, index;
     private long lastTick, timer;
@@ -20,6 +22,7 @@ public class Animation {
         this.lastTick = System.currentTimeMillis();
     }
 
+    @Override
     public void tick() {
         timer += System.currentTimeMillis() - lastTick;
         lastTick = System.currentTimeMillis();
