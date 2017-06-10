@@ -29,7 +29,7 @@ public class Player extends Creature {
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.player, (int) (x - handler.getGame().getCamera().getxOffset()), (int) (y - handler.getGame().getCamera().getyOffset()), width, height, null);
+        graphics.drawImage(Assets.PLAYER, (int) (x - handler.getGame().getCamera().getxOffset()), (int) (y - handler.getGame().getCamera().getyOffset()), width, height, null);
     }
 
     public void getInput() {

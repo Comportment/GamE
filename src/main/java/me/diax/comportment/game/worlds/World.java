@@ -2,7 +2,7 @@ package me.diax.comportment.game.worlds;
 
 import me.diax.comportment.game.Handler;
 import me.diax.comportment.game.tiles.Tile;
-import me.diax.comportment.game.tiles.TileManager;
+import me.diax.comportment.game.tiles.Tiles;
 import me.diax.comportment.game.utils.Utils;
 
 import java.awt.*;
@@ -56,10 +56,18 @@ public class World {
 
     public Tile getTile(int x, int y) {
         if (x < 0 || y < 0 || x >= width || y >= height) {
-            return TileManager.dirtTile;
+            return Tiles.DIRT;
         }
-        Tile t = TileManager.tiles[tiles[x][y]];
-        if (t == null) return TileManager.tiles[0];
+        Tile t = Tiles.TILES[tiles[x][y]];
+        if (t == null) return Tiles.TILES[0];
         return t;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }

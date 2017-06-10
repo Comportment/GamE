@@ -11,7 +11,7 @@ import java.awt.*;
 public class Main {
 
     public static void main(String[] args) {
-        Game game = new Game("GamE", new Dimension(Tile.WIDTH * 5, Tile.HEIGHT * 5));
+        Game game = new Game("GamE", new Dimension(Tile.WIDTH * 5, Tile.HEIGHT * 7));
         game.start();
     }
 }

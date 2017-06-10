@@ -9,14 +9,14 @@ import java.awt.image.BufferedImage;
  */
 public class Tile {
 
-    protected BufferedImage image;
-    private final int id;
     public static final int WIDTH = 60, HEIGHT = 60;
+    private final int id;
+    protected BufferedImage image;
 
     public Tile(BufferedImage image, int id) {
         this.image = image;
         this.id = id;
-        TileManager.tiles[id] = this;
+        Tiles.TILES[id] = this;
     }
 
     public void tick() {
