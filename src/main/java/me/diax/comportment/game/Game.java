@@ -2,6 +2,10 @@ package me.diax.comportment.game;
 
 import me.diax.comportment.game.display.Display;
 import me.diax.comportment.game.graphics.Assets;
+import me.diax.comportment.game.states.GameState;
+import me.diax.comportment.game.states.MenuState;
+import me.diax.comportment.game.states.State;
+import me.diax.comportment.game.states.StateManager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -24,7 +28,8 @@ public class Game implements Runnable {
 
     private long nano = 1000000000;
 
-    private int x = 1;
+    private State gameState;
+    private State menuState;
 
 
     public Game(String title, Dimension dimension) {
@@ -35,10 +40,15 @@ public class Game implements Runnable {
     private void init() {
         Assets.init();
         this.display = new Display(title, dimension);
+        gameState = new GameState();
+        menuState = new MenuState();
+        StateManager.setState(gameState);
     }
 
     private void tick() {
-        x++;
+        if (StateManager.getState() != null) {
+            StateManager.getState().tick();
+        }
     }
 
     private void render() {
@@ -50,8 +60,9 @@ public class Game implements Runnable {
         graphics = bufferStrategy.getDrawGraphics();
         graphics.clearRect(0, 0, dimension.width, dimension.height);
 
-        graphics.drawImage(Assets.dirt, x, 10, null);
-
+        if (StateManager.getState() != null) {
+            StateManager.getState().render(graphics);
+        }
         bufferStrategy.show();
         graphics.dispose();
     }
