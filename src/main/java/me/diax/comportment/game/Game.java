@@ -35,6 +35,7 @@ public class Game implements Runnable {
     private KeyManager keyManager;
 
     private GameCamera camera;
+    private Handler handler;
 
 
     public Game(String title, Dimension dimension) {
@@ -48,8 +49,9 @@ public class Game implements Runnable {
         this.display = new Display(title, dimension);
         display.getFrame().addKeyListener(keyManager);
         camera = new GameCamera(this, 0, 0);
-        gameState = new GameState(this);
-        menuState = new MenuState(this);
+        handler = new Handler(this);
+        gameState = new GameState(handler);
+        menuState = new MenuState(handler);
         StateManager.setState(gameState);
     }
 

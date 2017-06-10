@@ -1,6 +1,6 @@
 package me.diax.comportment.game.states;
 
-import me.diax.comportment.game.Game;
+import me.diax.comportment.game.Handler;
 
 import java.awt.*;
 
@@ -10,10 +10,10 @@ import java.awt.*;
  */
 public abstract class State {
 
-    protected Game game;
+    protected Handler handler;
 
-    public State(Game game) {
-        this.game = game;
+    public State(Handler handler) {
+        this.handler = handler;
     }
 
     public abstract void tick();

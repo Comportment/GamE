@@ -1,6 +1,6 @@
 package me.diax.comportment.game.states;
 
-import me.diax.comportment.game.Game;
+import me.diax.comportment.game.Handler;
 import me.diax.comportment.game.entity.Player;
 import me.diax.comportment.game.worlds.World;
 
@@ -15,17 +15,18 @@ public class GameState extends State {
     private Player player;
     private World world;
 
-    public GameState(Game game) {
-        super(game);
-        player = new Player(game, 100, 100);
-        world = new World(game, "C:\\Users\\FineComportment\\IdeaProjects\\GamE\\src\\main\\resources\\worlds\\1.world");
+    public GameState(Handler handler) {
+        super(handler);
+        world = new World(handler, "C:\\Users\\FineComportment\\IdeaProjects\\GamE\\src\\main\\resources\\worlds\\1.world");
+        handler.setWorld(world);
+        player = new Player(handler, 100, 100);
     }
 
     @Override
     public void tick() {
         world.tick();
         player.tick();
-        game.getCamera().move(1, 1);
+        //handler.getGame().getCamera().move(1, 1);
     }
 
     @Override

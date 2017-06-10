@@ -1,6 +1,6 @@
 package me.diax.comportment.game.worlds;
 
-import me.diax.comportment.game.Game;
+import me.diax.comportment.game.Handler;
 import me.diax.comportment.game.tiles.Tile;
 import me.diax.comportment.game.tiles.TileManager;
 import me.diax.comportment.game.utils.Utils;
@@ -15,10 +15,10 @@ public class World {
 
     private int width, height, spawnX, spawnY;
     private int[][] tiles;
-    private Game game;
+    private Handler handler;
 
-    public World(Game game, String path) {
-        this.game = game;
+    public World(Handler handler, String path) {
+        this.handler = handler;
         this.loadWorld(path);
     }
 
@@ -27,14 +27,14 @@ public class World {
     }
 
     public void render(Graphics graphics) {
-        int xStart = (int) Math.max(0, game.getCamera().getxOffset() / Tile.WIDTH);
-        int xEnd = (int) Math.min(width, (game.getCamera().getxOffset() + game.getDimension().width) / Tile.WIDTH + 1);
-        int yStart = (int) Math.max(0, game.getCamera().getyOffset() / Tile.HEIGHT);
-        int yEnd = (int) Math.min(height, (game.getCamera().getxOffset() + game.getDimension().height) / Tile.HEIGHT + 1);
+        int xStart = (int) Math.max(0, handler.getCamera().getxOffset() / Tile.WIDTH);
+        int xEnd = (int) Math.min(width, (handler.getCamera().getxOffset() + handler.getGame().getDimension().getWidth()) / Tile.WIDTH + 1);
+        int yStart = (int) Math.max(0, handler.getCamera().getyOffset() / Tile.HEIGHT);
+        int yEnd = (int) Math.min(height, (handler.getCamera().getyOffset() + handler.getGame().getDimension().getHeight()) / Tile.HEIGHT + 1);
 
         for (int y = yStart; y < yEnd; y++) {
             for (int x = xStart; x < xEnd; x++) {
-                getTile(x, y).render(graphics, (int) (x * Tile.WIDTH - game.getCamera().getxOffset()), (int) (y * Tile.HEIGHT - game.getCamera().getyOffset()));
+                getTile(x, y).render(graphics, (int) (x * Tile.WIDTH - handler.getCamera().getxOffset()), (int) (y * Tile.HEIGHT - handler.getCamera().getyOffset()));
             }
         }
     }
@@ -55,6 +55,9 @@ public class World {
     }
 
     public Tile getTile(int x, int y) {
+        if (x < 0 || y < 0 || x >= width || y >= height) {
+            return TileManager.dirtTile;
+        }
         Tile t = TileManager.tiles[tiles[x][y]];
         if (t == null) return TileManager.tiles[0];
         return t;

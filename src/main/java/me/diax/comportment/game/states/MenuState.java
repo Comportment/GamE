@@ -1,6 +1,6 @@
 package me.diax.comportment.game.states;
 
-import me.diax.comportment.game.Game;
+import me.diax.comportment.game.Handler;
 
 import java.awt.*;
 
@@ -10,8 +10,8 @@ import java.awt.*;
  */
 public class MenuState extends State {
 
-    public MenuState(Game game) {
-        super(game);
+    public MenuState(Handler handler) {
+        super(handler);
     }
 
     @Override
