@@ -18,12 +18,15 @@ public class Main {
     public void main() {
         JFrame frame = new JFrame("GamE");
         JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(200, 200));
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        panel.setPreferredSize(new Dimension((int) dimension.getWidth() / 2, (int) dimension.getHeight() / 2));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setIconImage(getIcon());
         frame.setResizable(true);
         frame.setContentPane(panel);
+        //FULL SCREEN frame.setUndecorated(true);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
