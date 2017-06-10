@@ -1,6 +1,6 @@
 package me.diax.comportment.game.states;
 
-import me.diax.comportment.game.graphics.Assets;
+import me.diax.comportment.game.entity.Player;
 
 import java.awt.*;
 
@@ -10,13 +10,19 @@ import java.awt.*;
  */
 public class GameState extends State {
 
+    private Player player;
+
+    public GameState() {
+        player = new Player(100, 100);
+    }
+
     @Override
     public void tick() {
-
+        player.tick();
     }
 
     @Override
     public void render(Graphics graphics) {
-        graphics.drawImage(Assets.dirt, 0, 0, null);
+        player.render(graphics);
     }
 }

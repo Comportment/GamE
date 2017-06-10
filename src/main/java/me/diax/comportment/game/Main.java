@@ -9,7 +9,7 @@ import java.awt.*;
 public class Main {
 
     public static void main(String[] args) {
-        Game game = new Game("Nejdasa", new Dimension(300, 300));
+        Game game = new Game("GamE", new Dimension(300, 300));
         game.start();
     }
 }
