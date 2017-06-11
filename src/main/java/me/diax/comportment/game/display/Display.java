@@ -1,5 +1,7 @@
 package me.diax.comportment.game.display;
 
+import me.diax.comportment.game.graphics.ImageLoader;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -42,6 +44,7 @@ public class Display {
         canvas.setMinimumSize(dimension);
         canvas.setFocusable(false);
 
+        frame.setIconImage(ImageLoader.loadImage("/icon.jpg"));
         frame.add(canvas);
         frame.pack();
     }

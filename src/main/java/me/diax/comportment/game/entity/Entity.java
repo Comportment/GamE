@@ -1,6 +1,8 @@
 package me.diax.comportment.game.entity;
 
 import me.diax.comportment.game.Handler;
+import me.diax.comportment.game.Renderable;
+import me.diax.comportment.game.Tickable;
 
 import java.awt.*;
 
@@ -8,7 +10,7 @@ import java.awt.*;
  * Created by Comportment on 10/06/2017 at 15:29
  * If you don't understand this, we are screwed.
  */
-public abstract class Entity {
+public abstract class Entity implements Tickable, Renderable {
 
     protected float x, y;
     protected int width, height;
@@ -24,10 +26,6 @@ public abstract class Entity {
 
         bounds = new Rectangle(0, 0, width, height);
     }
-
-    public abstract void tick();
-
-    public abstract void render(Graphics graphics);
 
     public float getX() {
         return x;

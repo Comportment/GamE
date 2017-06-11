@@ -1,4 +1,4 @@
-package me.diax.comportment.game.states;
+package states;
 
 import me.diax.comportment.game.Handler;
 

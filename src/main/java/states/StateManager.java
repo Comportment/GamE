@@ -1,4 +1,4 @@
-package me.diax.comportment.game.states;
+package states;
 
 /**
  * Created by Comportment on 10/06/2017 at 15:13
@@ -8,11 +8,11 @@ public class StateManager {
 
     private static State state = null;
 
-    public static void setState(State state) {
-        StateManager.state = state;
-    }
-
     public static State getState() {
         return state;
+    }
+
+    public static void setState(State state) {
+        StateManager.state = state;
     }
 }

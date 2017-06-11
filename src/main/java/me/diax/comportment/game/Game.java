@@ -4,10 +4,10 @@ import me.diax.comportment.game.display.Display;
 import me.diax.comportment.game.graphics.Assets;
 import me.diax.comportment.game.graphics.GameCamera;
 import me.diax.comportment.game.input.KeyManager;
-import me.diax.comportment.game.states.GameState;
-import me.diax.comportment.game.states.MenuState;
-import me.diax.comportment.game.states.State;
-import me.diax.comportment.game.states.StateManager;
+import states.GameState;
+import states.MenuState;
+import states.State;
+import states.StateManager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
